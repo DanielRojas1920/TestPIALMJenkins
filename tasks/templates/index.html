@@ -3,31 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/stylesindex.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
     <title>Task Manager</title>
 </head>
 <body>
-    <h1>Task Manager</h1>
+    <div class="title-container">
+        <h1>Task Manager</h1>
+        <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
     <p>Welcome, {{ request.user.username }}!</p>  <!-- Display the logged-in username -->
     <a href="{% url 'add_task' %}">Add Task</a>
-    <form action="{% url 'logout' %}" method="POST" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-    <ul>
+    <div class="task-container">
         {% for task in tasks %}
-            <li>
-                <strong>{{ task.name }}</strong><br>
-                {{ task.description }}<br>
-                <strong>Due date: </strong> {{ task.due_date }}<br>
-                <a href="{% url 'edit_task' task.id %}">Edit</a>
-                <form action="{% url 'delete_task' task.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <input type="submit" value="Delete">
-                </form>
-            </li>
+            <div class="task-card-container">
+                <div class="info-card-container">
+                    <strong>{{ task.name }}</strong> 
+                    <div> {{ task.description }} </div>
+                    <div> <strong> Due date: </strong> {{ task.due_date }} </div>
+                    <div class="task-card-options">
+                        <a class="btn btn-primary" href="{% url 'edit_task' task.id %}">Edit</a>
+                        <form action="{% url 'delete_task' task.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <input class="submit-button" type="submit" value="Delete">
+                        </form>
+                    </div>
+                </div>
+            </div>
         {% empty %}
             <li>No tasks available.</li>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
