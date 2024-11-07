@@ -4,6 +4,8 @@ FROM python:3
 # Configura el directorio de trabajo en el contenedor
 WORKDIR /app
 
+RUN python -m ensurepip --upgrade
+
 # Copia el archivo de requisitos para instalar dependencias
 COPY requirements.txt /app/
 
