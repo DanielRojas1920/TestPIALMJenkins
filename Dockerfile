@@ -7,6 +7,11 @@ WORKDIR /app
 # Copia el archivo de requisitos para instalar dependencias
 COPY requirements.txt /app/
 
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libmysqlclient-dev \
+    python3-dev \
+
 # Instala las dependencias
 RUN pip install -r requirements.txt
 
