@@ -21,7 +21,7 @@ resource "docker_image" "django_app" {
 }
 
 resource "docker_container" "django_container" {
-  image = docker_image.django_app.latest
+  image = docker_image.django_app
   name  = "django_container"
   ports {
     internal = 8000
