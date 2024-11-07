@@ -1,16 +1,16 @@
 # Usa la imagen base oficial de Python
-FROM python:3.9
+FROM python:3
 
 # Configura el directorio de trabajo en el contenedor
 WORKDIR /app
-
-# Copia el archivo de requisitos para instalar dependencias
-COPY requirements.txt /app/
 
 RUN apt-get update && apt-get install -y \
     gcc \
     libmysqlclient-dev \
     python3-dev \
+
+# Copia el archivo de requisitos para instalar dependencias
+COPY requirements.txt /app/
 
 # Instala las dependencias
 RUN pip install -r requirements.txt
