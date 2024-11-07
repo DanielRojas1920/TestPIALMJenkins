@@ -10,7 +10,7 @@ RUN python -m ensurepip --upgrade
 COPY requirements.txt /app/
 
 # Instala las dependencias
-RUN sudo pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copia el resto del código del proyecto
 COPY . /app/
