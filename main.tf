@@ -12,7 +12,7 @@ provider "docker" {
 }
 
 # Imagen y contenedor para la aplicación Django
-resource "docker_image" "django_app" {
+resource "docker_image" "django" {
   name = "django_app"
   build {
     context    = "."
