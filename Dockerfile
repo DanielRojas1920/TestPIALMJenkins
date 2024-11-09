@@ -1,19 +1,12 @@
-# Usa la imagen base oficial de Python
-FROM python:3
+FROM python:3.10
 
-# Configura el directorio de trabajo en el contenedor
 WORKDIR /app
 
-RUN python -m ensurepip --upgrade
 
-# Copia el archivo de requisitos para instalar dependencias
-COPY requirements.txt /app/
+COPY ./app/
 
-# Instala las dependencias
 RUN pip install -r requirements.txt
 
-# Copia el resto del código del proyecto
-COPY . /app/
-
-# Expone el puerto para el servidor Django
 EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

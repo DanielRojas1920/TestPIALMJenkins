@@ -94,8 +94,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'PIA_LMP',
         'USER': 'PIA_LMP',
-        'PASSWORD': 'ijklmnop582#',
-        'HOST': 'localhost',
+        'PASSWORD': '9WG\"\"u4:85M',
+        'HOST': 'mysql-client',
         'PORT': '3306',
     }
 }
