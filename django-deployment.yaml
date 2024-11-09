@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: tu_usuario/tu_imagen_django:latest  # La imagen Docker de tu app
+        image: danielrojas1920/django_pia_lm_image:latest  # La imagen Docker de tu app
         ports:
         - containerPort: 8000
         env:
