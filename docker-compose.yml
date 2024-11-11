@@ -8,8 +8,6 @@ services:
       MYSQL_USER: PIA_LMP
       MYSQL_PASSWORD: 9WG""u4:85M
       MYSQL_ROOT_PASSWORD: 9WG""u4:85M
-    ports:
-      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
 
