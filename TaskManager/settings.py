@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'PIA_LMP',
         'USER': 'PIA_LMP',
         'PASSWORD': '9WG\"\"u4:85M',
-        'HOST': 'mysql-client',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
