@@ -1,25 +1,41 @@
-version: '3'
+
+version: '3.8'
 
 services:
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_DATABASE: PIA_LMP
-      MYSQL_USER: PIA_LMP
-      MYSQL_PASSWORD: 9WG""u4:85M
-      MYSQL_ROOT_PASSWORD: 9WG""u4:85M
-    volumes:
-      - db_data:/var/lib/mysql
-
   web:
+    container_name: $DjangoTest_web
     build: .
+    working_dir: /app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
-    depends_on:
-      - db
+      - '8085:8000'
+    expose:
+      - '8000'
+    links:
+      - mysql
+    networks:
+      backend:
+        ipv4_address: 192.20.0.5
 
-volumes:
-  db_data:
+  mysql:
+    container_name: $DjangoTest_db
+    image: 'mysql:5.7'
+    volumes:
+      - './database/data:/var/lib/mysql'
+    ports:
+      - '3308:3306'
+    networks:
+      backend:
+        ipv4_address: 192.20.0.6
+    environment:
+      MYSQL_DATABASE: PIA_LMP
+      MYSQL_ROOT_PASSWORD: 9WG""u4:85M
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.20.0.0/24
